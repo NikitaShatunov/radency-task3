@@ -1,9 +1,11 @@
 import { Express, Request, Response } from "express";
-import { listOfAchives } from "../repositories/notesData";
+import { addNotes } from "../repositories/addNotes";
+import { validateNewTask } from "../helpers/validateNewTask";
 
 const createNoteRouter = (app: Express) => {
-    app.post("/notes", (req: Request, res: Response) => {
-        res.send(req.body.name)
+    app.post("/notes", validateNewTask, (req: Request, res: Response) => {
+        addNotes(req.body)
+        res.sendStatus(200);
     });
 }
 export default createNoteRouter

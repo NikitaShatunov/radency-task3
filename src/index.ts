@@ -3,7 +3,9 @@ import noteIdRouter from "./routes/noteIdRouter";
 import noteRouter from "./routes/noteRouter";
 import createNoteRouter from "./routes/createNoteRouter";
 import getStatsNotes from "./routes/getStatsNotes";
-import { listOfAchives } from "./repositories/notesData";
+import editNoteRouter from "./routes/editNoteRouter";
+import deleteNoteByIdRouter from "./routes/deleteNoteByIdRouter";
+import deleteAllNotesRouter from "./routes/deleteAllNotesRouter";
 const app = express();
 const port = 4000;
 
@@ -14,10 +16,9 @@ getStatsNotes(app)
 noteIdRouter(app)
 noteRouter(app)
 createNoteRouter(app)
-
-app.get("/notes", (req, res) => {
-  res.send(listOfAchives);
-});
+editNoteRouter(app)
+deleteNoteByIdRouter(app)
+deleteAllNotesRouter(app)
 
 
 app.listen(port, () => {

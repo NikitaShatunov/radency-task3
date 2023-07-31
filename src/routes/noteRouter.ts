@@ -1,8 +1,9 @@
 import { Express, Request, Response } from "express";
-import { listOfAchives } from "../repositories/notesData";
+import { getNotes } from "../repositories/getNotes";
 
 const noteRouter = (app: Express) => {
     app.get("/notes", (req: Request, res: Response) => {
+        const listOfAchives = getNotes()
         res.send(listOfAchives)
     });
 }
