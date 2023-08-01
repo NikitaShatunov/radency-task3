@@ -4,9 +4,10 @@ import { findNote } from "../services/findNote";
 import fs from "fs";
 import { notesDataLink } from "../consts";
 import { getNotes } from "./getNotes";
-export const deleteNoteById = async (id: number, res: Response) => {
+export const deleteNoteById = async (id: number) => {
   const notes = await getNotes();
   const findData = findNote(id, notes);
+  //if the note is not defined, returns null
   if (!findData) {
     return null;
   }

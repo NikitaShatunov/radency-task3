@@ -4,6 +4,7 @@ export const validateEditTask = async (req: Request, res: Response, next: NextFu
   const newtask = yup.object({
     name: yup.string().required(),
     content: yup.string().required(),
+    archived: yup.boolean()
   });
   try {
     await newtask.validate(req.body);

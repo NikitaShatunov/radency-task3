@@ -6,7 +6,8 @@ import { HTTP_CODES } from "../consts";
 const editNoteRouter = (app: Express) => {
     app.patch("/notes/:id", validateEditTask,  async (req: Request, res: Response) => {
         try {
-            const editFile = await editNote(req.body, +req.params.id, res)
+            //edit notes from repositories
+            const editFile = await editNote(req.body, +req.params.id)
             if(editFile === null) {
                res.sendStatus(HTTP_CODES.NO_CONTENT)
                return
@@ -14,7 +15,7 @@ const editNoteRouter = (app: Express) => {
             res.sendStatus(HTTP_CODES.OK)
         }
         catch(e: any) {
-            res.sendStatus(HTTP_CODES.INTERNAL_SERVER_ERROR)
+            res.sendStatus(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message)
         }
     });
 }

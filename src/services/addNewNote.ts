@@ -12,8 +12,11 @@ export interface Task {
 
 }
 export const addNewNotes = (obj: any, listOfTasks: Task[]) => {
-    const id = listOfTasks[listOfTasks.length - 1].id + 1 
+    //if our list is empty, id is 0
+    const id = !listOfTasks.length ? 0 : listOfTasks[listOfTasks?.length - 1]?.id + 1 
+    //calculate date of creation
     const created = createDate()
+    //fint dates in content
     const date = dateParser(obj.content)
     const newTask = {
         id: id,

@@ -4,7 +4,7 @@ import { HTTP_CODES } from "../consts";
 const deleteNoteByIdRouter = (app: Express) => {
   app.delete("/notes/:id", async (req: Request, res: Response) => {
     try {
-      if (await deleteNoteById(+req.params.id, res) === null) {
+      if (await deleteNoteById(+req.params.id) === null) {
         res.sendStatus(204);
         return
       }

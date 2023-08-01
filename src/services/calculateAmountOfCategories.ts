@@ -23,7 +23,7 @@ export const calculateAmountOfCategories = (items: Task[]) => {
   }
   const unarchiveObj = Object.fromEntries(unarchive)
   const archiveObj = Object.fromEntries(archive)
-  const sumOfAll: string[] = Array.from(hash);
+  const namesOfCategories: string[] = Array.from(hash);
 
-  return { unarchiveObj, archiveObj, sumOfAll };
+  return { unarchiveObj, archiveObj, namesOfCategories };
 };

@@ -8,7 +8,7 @@ export const validateNewTask = async (req: Request, res: Response, next: NextFun
     content: yup.string().required(),
   });
 
-  try {
+  try {    
     await newtask.validate(req.body);
     next();
   } catch (e: any) {

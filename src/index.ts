@@ -1,4 +1,4 @@
-import express, {Request, Response} from "express"
+import express from "express"
 import noteIdRouter from "./routes/noteIdRouter";
 import noteRouter from "./routes/noteRouter";
 import createNoteRouter from "./routes/createNoteRouter";
