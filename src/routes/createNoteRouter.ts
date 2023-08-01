@@ -11,7 +11,7 @@ const createNoteRouter = (app: Express) => {
       await addNotes(req.body);
       res.sendStatus(HTTP_CODES.CREATED);
     } catch (e: any) {
-      res.sendStatus(HTTP_CODES.INTERNAL_SERVER_ERROR)
+      res.status(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message)
     }
   });
 };

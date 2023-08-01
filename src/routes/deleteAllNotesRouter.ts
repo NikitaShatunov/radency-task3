@@ -8,7 +8,7 @@ const deleteAllNotesRouter = (app: Express) => {
         res.sendStatus(HTTP_CODES.OK)
        }
        catch(e: any) {
-        res.sendStatus(HTTP_CODES.INTERNAL_SERVER_ERROR)
+        res.status(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message)
        }
     })
 }

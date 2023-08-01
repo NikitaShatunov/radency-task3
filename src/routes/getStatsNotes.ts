@@ -10,7 +10,7 @@ const getStatsNotes = (app: Express) => {
       res.send(stats)
       }
       catch(e: any) {
-        res.sendStatus(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message)
+        res.status(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message)
       }
     })
 }

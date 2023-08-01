@@ -5,12 +5,11 @@ const deleteNoteByIdRouter = (app: Express) => {
   app.delete("/notes/:id", async (req: Request, res: Response) => {
     try {
       if (await deleteNoteById(+req.params.id) === null) {
-        res.sendStatus(204);
-        return
+        res.sendStatus(HTTP_CODES.NO_CONTENT);
       }
-      res.sendStatus(HTTP_CODES.OK);
+      res.status(HTTP_CODES.OK);
     } catch (e: any) {
-      res.sendStatus(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message);
+      res.status(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message);
     }
   });
 };

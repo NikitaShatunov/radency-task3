@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import { Request, Response, NextFunction } from "express";
+import { HTTP_CODES } from "../consts";
 
 export const validateNewTask = async (req: Request, res: Response, next: NextFunction) => {
   const newtask = yup.object({
@@ -12,6 +13,6 @@ export const validateNewTask = async (req: Request, res: Response, next: NextFun
     await newtask.validate(req.body);
     next();
   } catch (e: any) {
-    return res.status(400).send(e.message);
+    return res.status(HTTP_CODES.BAD_REQUEST).send(e.message);
   }
 };
