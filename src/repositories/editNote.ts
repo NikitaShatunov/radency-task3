@@ -1,10 +1,8 @@
 import { Task } from "../services/addNewNote";
 import { editNoteServ } from "../services/editNoteServ";
 import { findNote } from "../services/findNote";
-import { Response } from "express";
-import fs from "fs";
 import { getNotes } from "./getNotes";
-import { notesDataLink } from "../consts";
+import { writeDataUtil } from "../helpers/writeDataUtil";
 export const editNote = async (obj: Task, id: number) => {
   //get all note
   const notes = await getNotes();
@@ -16,5 +14,5 @@ export const editNote = async (obj: Task, id: number) => {
   //edit note and save file
   const newData = editNoteServ(obj, id, notes);
   const newDataParsed = JSON.stringify(newData);
-  fs.writeFile(notesDataLink, newDataParsed, err => {throw err});
+  writeDataUtil(newDataParsed)
 };

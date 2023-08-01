@@ -1,5 +1,5 @@
-import fs from "fs"
-import { notesDataLink } from "../consts";
+import { writeDataUtil } from "../helpers/writeDataUtil";
 export const deleteAllNotes = () => {
-    fs.writeFile(notesDataLink, '[]', error => {throw error});
+    const newData:string = "[]"
+    writeDataUtil(newData)
 }
