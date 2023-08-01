@@ -1,6 +1,6 @@
-import { Express, Request, Response } from "express";
-import { getNotes } from "../repositories/getNotes";
-import { HTTP_CODES } from "../consts";
+import { Express, Request, Response } from "express"
+import { getNotes } from "../repositories/get-notes"
+import { HTTP_CODES } from "../constans"
 
 const noteRouter = (app: Express) => {
     app.get("/notes", async (req: Request, res: Response) => {

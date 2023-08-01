@@ -1,6 +1,6 @@
 import { Express, Request, Response } from "express"
-import { deleteAllNotes } from "../repositories/deleteAllNotes"
-import { HTTP_CODES } from "../consts"
+import { deleteAllNotes } from "../repositories/delete-all-notes"
+import { HTTP_CODES } from "../constans"
 const deleteAllNotesRouter = (app: Express) => {
     app.delete("/notes", (req: Request, res: Response) => {
        try {

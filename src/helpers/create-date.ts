@@ -12,12 +12,12 @@ export const createDate = () => {
         "October",
         "November",
         "December",
-      ];
+      ]
       
-      const currentDate = new Date();
-      const month = months[currentDate.getMonth()];
-      const day = currentDate.getDate();
-      const year = currentDate.getFullYear();
+      const currentDate = new Date()
+      const month = months[currentDate.getMonth()]
+      const day = currentDate.getDate()
+      const year = currentDate.getFullYear()
     
-      return `${month} ${day}, ${year}`;
+      return `${month} ${day}, ${year}`
 }

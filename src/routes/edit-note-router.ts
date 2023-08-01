@@ -1,7 +1,7 @@
-import { Express, Request, Response } from "express";
-import { editNote } from "../repositories/editNote";
-import { validateEditTask } from "../helpers/validateEditTask";
-import { HTTP_CODES } from "../consts";
+import { Express, Request, Response } from "express"
+import { editNote } from "../repositories/edit-note"
+import { validateEditTask } from "../helpers/validate-edit-task"
+import { HTTP_CODES } from "../constans"
 
 const editNoteRouter = (app: Express) => {
     app.patch("/notes/:id", validateEditTask,  async (req: Request, res: Response) => {

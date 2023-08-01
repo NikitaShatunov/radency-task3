@@ -1,6 +1,6 @@
-import { Express, Request, Response } from "express";
-import { getStats } from "../repositories/getStats";
-import { HTTP_CODES } from "../consts";
+import { Express, Request, Response } from "express"
+import { getStats } from "../repositories/get-stats"
+import { HTTP_CODES } from "../constans"
 
 const getStatsNotes = (app: Express) => {
     app.get("/notes/stats", async (req: Request, res: Response) => {

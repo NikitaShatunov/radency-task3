@@ -1,5 +1,5 @@
-import { createDate } from "../helpers/createDate"
-import { dateParser } from "../helpers/dateParser"
+import { createDate } from "../helpers/create-date"
+import { dateFromContent } from "../helpers/date-from-content"
 
 export interface Task {
     id: string,
@@ -17,7 +17,7 @@ export const addNewNotes = (obj: any, listOfTasks: Task[]) => {
     //calculate date of creation
     const created = createDate()
     //fint dates in content
-    const date = dateParser(obj.content)
+    const date = dateFromContent(obj.content)
     const newTask = {
         id: id,
         name: obj.name,

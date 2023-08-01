@@ -1,5 +1,5 @@
-import { findNote } from "../services/findNote"
-import { getNotes } from "./getNotes"
+import { findNote } from "../services/find-note"
+import { getNotes } from "./get-notes"
 
 export const getNoteById = async (id: number) => {
     const data = await getNotes()

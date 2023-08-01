@@ -1,6 +1,6 @@
-import { HTTP_CODES } from "../consts";
-import { getNoteById } from "../repositories/getNoteById";
-import { Express, Request, Response } from "express-serve-static-core";
+import { HTTP_CODES } from "../constans"
+import { getNoteById } from "../repositories/get-note-by-id"
+import { Express, Request, Response } from "express-serve-static-core"
 const noteIdRouter = (app: Express) => {
     app.get("/notes/:id", async (req: Request, res: Response) => {
         //search note by id
