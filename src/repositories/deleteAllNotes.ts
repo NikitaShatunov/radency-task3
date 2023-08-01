@@ -1,4 +1,5 @@
+import fs from "fs"
+import { notesDataLink } from "../consts";
 export const deleteAllNotes = () => {
-    const fs = require('fs'); 
-    fs.writeFileSync('src/data.json', '[]');
+    fs.writeFile(notesDataLink, '[]', error => {throw error});
 }

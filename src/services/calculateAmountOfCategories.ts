@@ -1,4 +1,6 @@
-export const calculateAmountOfCategories = (items: any) => {
+import { Task } from "./addNewNote";
+
+export const calculateAmountOfCategories = (items: Task[]) => {
   let hash = new Set<string>();
   let unarchive = new Map<string, number>();
   let archive = new Map<string, number>();
