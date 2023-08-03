@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTTP_CODES = exports.notesDataLink = void 0;
-exports.notesDataLink = "src/data.json";
+exports.notesDataLink = "data/data.json";
 exports.HTTP_CODES = {
     "CONTINUE": 100,
     "SWITCHING_PROTOCOLS": 101,

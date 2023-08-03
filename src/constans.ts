@@ -1,4 +1,4 @@
-export const notesDataLink = "src/data.json";
+export const notesDataLink = "data/data.json";
 export const HTTP_CODES = {
     "CONTINUE": 100,
     "SWITCHING_PROTOCOLS": 101,

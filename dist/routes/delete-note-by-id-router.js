@@ -17,7 +17,7 @@ const deleteNoteByIdRouter = (app) => {
             if ((yield (0, delete_note_by_id_1.deleteNoteById)(+req.params.id)) === null) {
                 res.sendStatus(constans_1.HTTP_CODES.NO_CONTENT);
             }
-            res.status(constans_1.HTTP_CODES.OK);
+            res.sendStatus(constans_1.HTTP_CODES.OK);
         }
         catch (e) {
             res.status(constans_1.HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message);
