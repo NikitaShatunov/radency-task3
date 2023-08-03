@@ -5,7 +5,7 @@ const deleteNoteByIdRouter = (app: Express) => {
   app.delete("/notes/:id", async (req: Request, res: Response) => {
     try {
       if (await deleteNoteById(+req.params.id) === null) {
-        res.sendStatus(HTTP_CODES.NO_CONTENT)
+        return res.sendStatus(HTTP_CODES.NO_CONTENT)
       }
       res.sendStatus(HTTP_CODES.OK)
     } catch (e: any) {
