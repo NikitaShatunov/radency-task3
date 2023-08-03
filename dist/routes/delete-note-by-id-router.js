@@ -15,7 +15,7 @@ const deleteNoteByIdRouter = (app) => {
     app.delete("/notes/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             if ((yield (0, delete_note_by_id_1.deleteNoteById)(+req.params.id)) === null) {
-                res.sendStatus(constans_1.HTTP_CODES.NO_CONTENT);
+                return res.sendStatus(constans_1.HTTP_CODES.NO_CONTENT);
             }
             res.sendStatus(constans_1.HTTP_CODES.OK);
         }

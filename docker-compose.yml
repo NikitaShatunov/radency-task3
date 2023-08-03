@@ -1,0 +1,29 @@
+version: "3.5"
+services:
+  db:
+    container_name: db
+    image: postgres:15.3-bullseye
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: notes
+    volumes:
+      - db:/var/lib/postgresql/data
+  main:
+    container_name: main
+    build:
+      context: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 4000:4000
+    command: npm start
+    depends_on:
+      - db
+    restart: always
+volumes:
+  db:
+    driver: local
