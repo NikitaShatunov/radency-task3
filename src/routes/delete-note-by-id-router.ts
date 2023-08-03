@@ -7,7 +7,7 @@ const deleteNoteByIdRouter = (app: Express) => {
       if (await deleteNoteById(+req.params.id) === null) {
         res.sendStatus(HTTP_CODES.NO_CONTENT)
       }
-      res.status(HTTP_CODES.OK)
+     res.sendStatus(HTTP_CODES.OK)
     } catch (e: any) {
       res.status(HTTP_CODES.INTERNAL_SERVER_ERROR).send(e.message)
     }
