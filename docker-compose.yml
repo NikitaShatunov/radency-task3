@@ -15,15 +15,16 @@ services:
     container_name: main
     build:
       context: .
-    volumes:
-      - .:/app
-      - /app/node_modules
     ports:
       - 4000:4000
     command: npm start
     depends_on:
       - db
     restart: always
+    volumes:
+      - main:/app
 volumes:
   db:
+    driver: local
+  main:
     driver: local

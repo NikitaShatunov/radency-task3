@@ -10,7 +10,5 @@ COPY . .
 
 EXPOSE 4000 
 
-VOLUME ["/app/data"]
-
 CMD ["npm", "start"]
 
