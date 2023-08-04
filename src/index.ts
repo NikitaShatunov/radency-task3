@@ -9,6 +9,7 @@ import deleteAllNotesRouter from "./routes/delete-all-notes-router"
 const app = express()
 const port = 4000
 
+import { pool } from "../data/db";
 
 app.use(express.json())
 
@@ -20,7 +21,6 @@ editNoteRouter(app)
 deleteNoteByIdRouter(app)
 deleteAllNotesRouter(app)
 
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
-});
+});    

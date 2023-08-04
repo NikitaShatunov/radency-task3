@@ -23,8 +23,19 @@ services:
     restart: always
     volumes:
       - main:/app
+  pg-admin:
+    image: dpage/pgadmin4:7.5
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050"
+    volumes:
+      - admin:/var
 volumes:
   db:
     driver: local
   main:
     driver: local
+  admin:

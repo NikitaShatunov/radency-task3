@@ -14,5 +14,5 @@ export const editNote = async (obj: Task, id: number) => {
   //edit note and save file
   const newData = editNoteServer(obj, id, notes)
   const newDataStringified = JSON.stringify(newData)
-  writeDataUtil(newDataStringified)
+  // writeDataUtil(newDataStringified)
 }

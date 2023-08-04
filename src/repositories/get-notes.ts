@@ -1,11 +1,9 @@
-import { notesDataLink } from "../constans"
-import { promises as fs } from 'fs'
+import { pool } from "../../data/db"
 
 export const getNotes = async () => {
   try {
-    const rawData = await fs.readFile(notesDataLink)
-    const notes = JSON.parse(String(rawData))
-    return notes
+    const notes = await pool.query("SELECT * from notes")
+    return notes.rows
   } catch (error) {
     throw new Error("Error reading notes data")
   }

@@ -1,15 +1,15 @@
-import { deleteNote } from "../services/delete-note"
-import { findNote } from "../services/find-note"
-import { getNotes } from "./get-notes"
-import { writeDataUtil } from "../helpers/write-data-util"
+import { pool } from "../../data/db";
+
 export const deleteNoteById = async (id: number) => {
-  const notes = await getNotes()
-  const findData = findNote(id, notes)
-  //if the note is not defined, returns null
-  if (!findData) {
-    return null
+  try {
+    const result = await pool.query("DELETE FROM notes WHERE id = $1 RETURNING *", [id]);
+
+    if (result.rowCount === 0) {
+      return null; // If no rows were deleted (note doesn't exist), return null
+    }
+
+    return result.rows[0]; // Return the deleted note
+  } catch (error) {
+    throw new Error("Error deleting note by id");
   }
-  const newData = deleteNote(id, notes)
-  const newDataParsed = JSON.stringify(newData)
-  writeDataUtil(newDataParsed)
-}
+};
