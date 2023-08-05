@@ -1,4 +1,9 @@
-import { writeDataUtil } from "../helpers/write-data-util"
-export const deleteAllNotes = () => {
-    const newData:string = "[]"
-}
+import { pool } from "../../data/db";
+
+export const deleteAllNotes = async () => {
+  try {
+    await pool.query("DELETE FROM notes");
+  } catch (error) {
+    throw new Error("Error deleting all notes");
+  }
+};

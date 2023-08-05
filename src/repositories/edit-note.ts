@@ -1,18 +1,47 @@
 import { Task } from "../services/add-new-note"
 import { editNoteServer } from "../services/edit-note-serv"
-import { findNote } from "../services/find-note"
-import { getNotes } from "./get-notes"
-import { writeDataUtil } from "../helpers/write-data-util"
+import { pool } from "../../data/db"
 export const editNote = async (obj: Task, id: number) => {
-  //get all note
-  const notes = await getNotes()
-  //find desired note
-  const findData = findNote(id, notes)
-  if (!findData) {
-    return null
+  try {
+    const newNote = editNoteServer(obj)
+    if(newNote.archived !== null) {
+      const result = await pool.query(
+        `UPDATE notes SET
+          archived = $1,
+          name = $2,
+          content = $3,
+          date = $4
+        WHERE id = $5
+        RETURNING *`,
+        [
+          newNote.archived,
+          newNote.name,
+          newNote.content,
+          newNote.date,
+          id,
+        ]
+      );
+      return result.rowCount > 0
+    }
+    else {
+      const result = await pool.query(
+        `UPDATE notes SET
+          name = $1,
+          content = $2,
+          date = $3
+        WHERE id = $4
+        RETURNING *`,
+        [
+          newNote.name,
+          newNote.content,
+          newNote.date,
+          id,
+        ]
+      );
+      return result.rowCount > 0
+    } 
   }
-  //edit note and save file
-  const newData = editNoteServer(obj, id, notes)
-  const newDataStringified = JSON.stringify(newData)
-  // writeDataUtil(newDataStringified)
+  catch(e) {
+    throw new Error(e)
+  }
 }

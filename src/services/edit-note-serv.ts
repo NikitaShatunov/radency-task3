@@ -1,19 +1,17 @@
 import { dateFromContent } from "../helpers/date-from-content"
 import { Task } from "./add-new-note"
 
-export const editNoteServer = (obj: any, id: number, data: Task[]) => {
+export const editNoteServer = (obj: any) => {
     const date = dateFromContent(obj.content)
+    console.log(date);
     const name = obj.name
     const content = obj.content
     const archived = obj.archived
-    let newData = <Task[]>[...data]
-    newData.forEach((key) => {
-        if(+key.id === id) {
-            key.name = name
-            key.content = content
-            key.date = date || ''
-            key.archived = archived ? archived : key.archived
+    const newNote = {
+            name: name,
+            content: content,
+            date: date || '',
+            archived: archived || null
         }
-    })
-    return newData
+    return newNote
 }

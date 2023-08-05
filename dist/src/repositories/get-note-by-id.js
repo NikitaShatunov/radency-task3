@@ -10,12 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNoteById = void 0;
-const find_note_1 = require("../services/find-note");
-const get_notes_1 = require("./get-notes");
+const db_1 = require("../../data/db");
 const getNoteById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const data = yield (0, get_notes_1.getNotes)();
-    const note = (0, find_note_1.findNote)(id, data);
-    return note;
+    try {
+        const notes = yield db_1.pool.query("SELECT * FROM notes WHERE id = $1", [id]);
+        return notes.rows[0];
+    }
+    catch (error) {
+        throw new Error("Error reading notes data");
+    }
 });
 exports.getNoteById = getNoteById;
 //# sourceMappingURL=get-note-by-id.js.map

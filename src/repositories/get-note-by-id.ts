@@ -1,8 +1,10 @@
-import { findNote } from "../services/find-note"
-import { getNotes } from "./get-notes"
+import { pool } from "../../data/db"
 
 export const getNoteById = async (id: number) => {
-    const data = await getNotes()
-    const note = findNote(id, data)
-    return note
-}
+    try {
+        const notes = await pool.query("SELECT * FROM notes WHERE id = $1", [id])
+        return notes.rows[0]
+      } catch (error) {
+        throw new Error("Error reading notes data")
+      }
+    }

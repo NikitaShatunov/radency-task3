@@ -11,20 +11,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editNote = void 0;
 const edit_note_serv_1 = require("../services/edit-note-serv");
-const find_note_1 = require("../services/find-note");
-const get_notes_1 = require("./get-notes");
+const db_1 = require("../../data/db");
 const editNote = (obj, id) => __awaiter(void 0, void 0, void 0, function* () {
-    //get all note
-    const notes = yield (0, get_notes_1.getNotes)();
-    //find desired note
-    const findData = (0, find_note_1.findNote)(id, notes);
-    if (!findData) {
-        return null;
+    try {
+        const newNote = (0, edit_note_serv_1.editNoteServer)(obj);
+        if (newNote.archived !== null) {
+            const result = yield db_1.pool.query(`UPDATE notes SET
+          archived = $1,
+          name = $2,
+          content = $3,
+          date = $4
+        WHERE id = $5
+        RETURNING *`, [
+                newNote.archived,
+                newNote.name,
+                newNote.content,
+                newNote.date,
+                id,
+            ]);
+            return result.rowCount > 0;
+        }
+        else {
+            const result = yield db_1.pool.query(`UPDATE notes SET
+          name = $1,
+          content = $2,
+          date = $3
+        WHERE id = $4
+        RETURNING *`, [
+                newNote.name,
+                newNote.content,
+                newNote.date,
+                id,
+            ]);
+            return result.rowCount > 0;
+        }
     }
-    //edit note and save file
-    const newData = (0, edit_note_serv_1.editNoteServer)(obj, id, notes);
-    const newDataStringified = JSON.stringify(newData);
-    // writeDataUtil(newDataStringified)
+    catch (e) {
+        throw new Error(e);
+    }
 });
 exports.editNote = editNote;
 //# sourceMappingURL=edit-note.js.map
