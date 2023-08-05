@@ -1,5 +1,4 @@
 import { dateFromContent } from "../helpers/date-from-content"
-import { Task } from "./add-new-note"
 
 export const editNoteServer = (obj: any) => {
     const date = dateFromContent(obj.content)
