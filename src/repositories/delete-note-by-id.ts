@@ -1,5 +1,4 @@
-import { deleteNote } from "../services/delete-note"
-import { findNote } from "../services/find-note"
+import { deleteNote, findNote } from "../services/services"
 import { getNotes } from "./get-notes"
 import { writeDataUtil } from "../helpers/write-data-util"
 export const deleteNoteById = async (id: number) => {

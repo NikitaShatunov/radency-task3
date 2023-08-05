@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNoteById = void 0;
-const find_note_1 = require("../services/find-note");
+const services_1 = require("../services/services");
 const get_notes_1 = require("./get-notes");
 const getNoteById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const data = yield (0, get_notes_1.getNotes)();
-    const note = (0, find_note_1.findNote)(id, data);
+    const note = (0, services_1.findNote)(id, data);
     return note;
 });
 exports.getNoteById = getNoteById;

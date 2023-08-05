@@ -1,4 +1,4 @@
-import { Task, addNewNotes } from "../services/add-new-note"
+import { Task, addNewNotes } from "../services/services"
 import { getNotes } from "./get-notes"
 import { writeDataUtil } from "../helpers/write-data-util"
 export const addNotes = async (obj: Task) => {

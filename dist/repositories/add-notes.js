@@ -10,12 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addNotes = void 0;
-const add_new_note_1 = require("../services/add-new-note");
+const services_1 = require("../services/services");
 const get_notes_1 = require("./get-notes");
 const write_data_util_1 = require("../helpers/write-data-util");
 const addNotes = (obj) => __awaiter(void 0, void 0, void 0, function* () {
     const notes = yield (0, get_notes_1.getNotes)();
-    const newTask = (0, add_new_note_1.addNewNotes)(obj, notes);
+    const newTask = (0, services_1.addNewNotes)(obj, notes);
     const newData = [...notes, newTask];
     const newDataParsed = JSON.stringify(newData);
     (0, write_data_util_1.writeDataUtil)(newDataParsed);

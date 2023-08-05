@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getStats = void 0;
-const calculate_amount_of_categories_1 = require("../services/calculate-amount-of-categories");
+const services_1 = require("../services/services");
 const get_notes_1 = require("./get-notes");
 const getStats = () => __awaiter(void 0, void 0, void 0, function* () {
     const listOfAchives = yield (0, get_notes_1.getNotes)();
-    const stats = (0, calculate_amount_of_categories_1.calculateAmountOfCategories)(listOfAchives);
+    const stats = (0, services_1.calculateAmountOfCategories)(listOfAchives);
     return stats;
 });
 exports.getStats = getStats;

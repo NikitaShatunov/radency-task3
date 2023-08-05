@@ -1,4 +1,4 @@
-import { calculateAmountOfCategories } from "../services/calculate-amount-of-categories"
+import { calculateAmountOfCategories } from "../services/services"
 import { getNotes } from "./get-notes"
 export const getStats = async () => {
   const listOfAchives = await getNotes()

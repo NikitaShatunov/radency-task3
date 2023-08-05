@@ -1,11 +1,5 @@
 import express from "express"
-import noteIdRouter from "./routes/note-id-router"
-import noteRouter from "./routes/note-router"
-import createNoteRouter from "./routes/create-note-router"
-import getStatsNotes from "./routes/get-stats-notes"
-import editNoteRouter from "./routes/edit-note-router"
-import deleteNoteByIdRouter from "./routes/delete-note-by-id-router"
-import deleteAllNotesRouter from "./routes/delete-all-notes-router"
+import { noteIdRouter, noteRouter, createNoteRouter, getStatsNotes, editNoteRouter, deleteNoteByIdRouter, deleteAllNotesRouter  } from "./routes/routes"
 const app = express()
 const port = 4000
 

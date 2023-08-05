@@ -1,4 +1,4 @@
-import { findNote } from "../services/find-note"
+import { findNote } from "../services/services"
 import { getNotes } from "./get-notes"
 
 export const getNoteById = async (id: number) => {
