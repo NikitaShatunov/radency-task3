@@ -4,7 +4,8 @@ import { pool } from "../../data/db"
 export const editNote = async (obj: Task, id: number) => {
   try {
     const newNote = editNoteServer(obj)
-    if(newNote.archived !== null) {
+    console.log(newNote);
+    if(newNote.hasOwnProperty("archived")) {
       const result = await pool.query(
         `UPDATE notes SET
           archived = $1,
@@ -14,6 +15,7 @@ export const editNote = async (obj: Task, id: number) => {
         WHERE id = $5
         RETURNING *`,
         [
+          // @ts-ignore
           newNote.archived,
           newNote.name,
           newNote.content,
@@ -22,7 +24,7 @@ export const editNote = async (obj: Task, id: number) => {
         ]
       );
       return result.rowCount > 0
-    }
+      }
     else {
       const result = await pool.query(
         `UPDATE notes SET
@@ -41,6 +43,7 @@ export const editNote = async (obj: Task, id: number) => {
       return result.rowCount > 0
     } 
   }
+
   catch(e) {
     throw new Error(e)
   }

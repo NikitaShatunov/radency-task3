@@ -15,7 +15,8 @@ const db_1 = require("../../data/db");
 const editNote = (obj, id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newNote = (0, edit_note_serv_1.editNoteServer)(obj);
-        if (newNote.archived !== null) {
+        console.log(newNote);
+        if (newNote.hasOwnProperty("archived")) {
             const result = yield db_1.pool.query(`UPDATE notes SET
           archived = $1,
           name = $2,
@@ -23,6 +24,7 @@ const editNote = (obj, id) => __awaiter(void 0, void 0, void 0, function* () {
           date = $4
         WHERE id = $5
         RETURNING *`, [
+                // @ts-ignore
                 newNote.archived,
                 newNote.name,
                 newNote.content,
