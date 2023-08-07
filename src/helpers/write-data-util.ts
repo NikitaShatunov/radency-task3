@@ -1,4 +1,4 @@
-import { pool } from "../../data/db";
+import { Notes } from "../../data/sequelize";
 
 interface Task {
   archived: boolean;
@@ -11,17 +11,7 @@ interface Task {
 
 export const writeDataUtil = async (newData: Task) => {
   try {
-    const notes = await pool.query(
-      `INSERT INTO notes (archived, name, created, category, content, date) values ($1, $2, $3, $4, $5, $6)`,
-      [
-        newData.archived,
-        newData.name,
-        newData.created,
-        newData.category,
-        newData.content,
-        newData.date,
-      ]
-    );
+    const note = await Notes.create({...newData})
   } catch (error) {
     throw new Error("Error reading notes data");
   }

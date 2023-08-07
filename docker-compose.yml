@@ -39,3 +39,4 @@ volumes:
   main:
     driver: local
   admin:
+    driver: local

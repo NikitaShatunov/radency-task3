@@ -10,17 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeDataUtil = void 0;
-const db_1 = require("../../data/db");
+const sequelize_1 = require("../../data/sequelize");
 const writeDataUtil = (newData) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const notes = yield db_1.pool.query(`INSERT INTO notes (archived, name, created, category, content, date) values ($1, $2, $3, $4, $5, $6)`, [
-            newData.archived,
-            newData.name,
-            newData.created,
-            newData.category,
-            newData.content,
-            newData.date,
-        ]);
+        const note = yield sequelize_1.Notes.create(Object.assign({}, newData));
     }
     catch (error) {
         throw new Error("Error reading notes data");

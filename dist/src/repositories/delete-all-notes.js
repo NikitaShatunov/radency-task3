@@ -10,10 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteAllNotes = void 0;
-const db_1 = require("../../data/db");
+const sequelize_1 = require("../../data/sequelize");
 const deleteAllNotes = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield db_1.pool.query("DELETE FROM notes");
+        yield sequelize_1.Notes.destroy({
+            truncate: true
+        });
     }
     catch (error) {
         throw new Error("Error deleting all notes");

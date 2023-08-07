@@ -1,8 +1,10 @@
-import { pool } from "../../data/db";
+import { Notes } from "../../data/sequelize";
 
 export const deleteAllNotes = async () => {
   try {
-    await pool.query("DELETE FROM notes");
+    await Notes.destroy({
+      truncate: true
+    });
   } catch (error) {
     throw new Error("Error deleting all notes");
   }

@@ -1,9 +1,9 @@
-import { pool } from "../../data/db"
+import { Notes } from "../../data/sequelize"
 
 export const getNotes = async () => {
   try {
-    const notes = await pool.query("SELECT * from notes")
-    return notes.rows
+    const notes: any = await Notes.findAll({raw: true})    
+    return notes
   } catch (error) {
     throw new Error("Error reading notes data")
   }

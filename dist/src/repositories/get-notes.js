@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNotes = void 0;
-const db_1 = require("../../data/db");
+const sequelize_1 = require("../../data/sequelize");
 const getNotes = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const notes = yield db_1.pool.query("SELECT * from notes");
-        return notes.rows;
+        const notes = yield sequelize_1.Notes.findAll({ raw: true });
+        return notes;
     }
     catch (error) {
         throw new Error("Error reading notes data");

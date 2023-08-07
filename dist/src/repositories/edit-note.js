@@ -11,40 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editNote = void 0;
 const edit_note_serv_1 = require("../services/edit-note-serv");
-const db_1 = require("../../data/db");
+const sequelize_1 = require("../../data/sequelize");
 const editNote = (obj, id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newNote = (0, edit_note_serv_1.editNoteServer)(obj);
-        if (newNote.archived !== null) {
-            const result = yield db_1.pool.query(`UPDATE notes SET
-          archived = $1,
-          name = $2,
-          content = $3,
-          date = $4
-        WHERE id = $5
-        RETURNING *`, [
-                newNote.archived,
-                newNote.name,
-                newNote.content,
-                newNote.date,
-                id,
-            ]);
-            return result.rowCount > 0;
-        }
-        else {
-            const result = yield db_1.pool.query(`UPDATE notes SET
-          name = $1,
-          content = $2,
-          date = $3
-        WHERE id = $4
-        RETURNING *`, [
-                newNote.name,
-                newNote.content,
-                newNote.date,
-                id,
-            ]);
-            return result.rowCount > 0;
-        }
+        const result = yield sequelize_1.Notes.update(Object.assign({}, newNote), { where: { id: id } });
+        console.log(result);
+        return result[0];
     }
     catch (e) {
         throw new Error(e);

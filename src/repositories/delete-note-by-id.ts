@@ -1,14 +1,20 @@
-import { pool } from "../../data/db";
+import { Notes } from "../../data/sequelize";
 
 export const deleteNoteById = async (id: number) => {
   try {
-    const result = await pool.query("DELETE FROM notes WHERE id = $1 RETURNING *", [id]);
+    const result = await Notes.destroy({
+      where: {
+        id: id
+      }
+    });
+    console.log(result);
+    
 
-    if (result.rowCount === 0) {
+    if (result === 0) {
       return null; // If no rows were deleted (note doesn't exist), return null
     }
 
-    return result.rows[0]; // Return the deleted note
+    return result; // Return the deleted note
   } catch (error) {
     throw new Error("Error deleting note by id");
   }

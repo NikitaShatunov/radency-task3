@@ -10,14 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteNoteById = void 0;
-const db_1 = require("../../data/db");
+const sequelize_1 = require("../../data/sequelize");
 const deleteNoteById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield db_1.pool.query("DELETE FROM notes WHERE id = $1 RETURNING *", [id]);
-        if (result.rowCount === 0) {
+        const result = yield sequelize_1.Notes.destroy({
+            where: {
+                id: id
+            }
+        });
+        console.log(result);
+        if (result === 0) {
             return null; // If no rows were deleted (note doesn't exist), return null
         }
-        return result.rows[0]; // Return the deleted note
+        return result; // Return the deleted note
     }
     catch (error) {
         throw new Error("Error deleting note by id");
