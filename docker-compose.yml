@@ -1,4 +1,4 @@
-version: "3.5"
+version: '3.5'
 services:
   db:
     container_name: db
@@ -6,9 +6,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: notes
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=notes
     volumes:
       - db:/var/lib/postgresql/data
   pg-admin:
@@ -18,25 +18,11 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=root
       - PGADMIN_LISTEN_PORT=5050
     ports:
-      - "5050:5050"
+      - '5050:5050'
     volumes:
       - admin:/var
-  main:
-    container_name: main
-    build:
-      context: .
-    ports:
-      - 4000:4000
-    command: npm start
-    depends_on:
-      - db
-    restart: always
-    volumes:
-      - main:/app
 volumes:
   db:
-    driver: local
-  main:
     driver: local
   admin:
     driver: local
